@@ -40,12 +40,16 @@ public class MainController {
     @GetMapping("/{id}") // ${id} X
     public String detail(@PathVariable Long id, Model model) {
         model.addAttribute("pet", petService.findById(id));
+        model.addAttribute("animals", petService.findAllAnimal());
         return "detail";
     }
 
     @PostMapping("/{id}")
     public String update(@ModelAttribute PetFormDTO dto, @PathVariable Long id) {
-        petService.update(dto.toEntity(id));
+        Pet pet = dto.toEntity(id);
+        pet.changeAnimal(petService.findAnimalById(dto.animalId()));
+        petService.update(pet);
+//        petService.update(dto.toEntity(id));
         return "redirect:/";
     }
 
