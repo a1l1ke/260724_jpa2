@@ -10,6 +10,17 @@
     <form method="post">
         <input name="name" placeholder="펫 이름"><br>
         <input name="age" type="number" placeholder="펫 나이"><br>
+        <select name="animalId">
+            <c:forEach items="${animals}" var="animal">
+                <option value="${animal.id}">${animal.name}</option>
+            </c:forEach>
+        </select>
+        <button>추가</button>
+    </form>
+</section>
+<section>
+    <form method="post" action="/animal">
+        <input name="name" placeholder="동물 이름"><br>
         <button>추가</button>
     </form>
 </section>
