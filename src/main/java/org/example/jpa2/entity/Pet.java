@@ -21,4 +21,10 @@ public class Pet {
     private String name;
     @Column(nullable = false)
     private int age;
+    // SoftDelete
+    private boolean isDeleted;
+
+    public void changeDeleted() {
+        isDeleted = true;
+    }
 }
