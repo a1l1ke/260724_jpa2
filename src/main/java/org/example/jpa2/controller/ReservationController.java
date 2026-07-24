@@ -21,6 +21,8 @@ public class ReservationController {
         model.addAttribute("doctors", reservationService.findAllDoctor());
         model.addAttribute("pets", petService.findAll());
         model.addAttribute("reservations", reservationService.findAllReservation());
+        // N+1
+        model.addAttribute("doctorReservations", reservationService.findDoctorReservation(1L));
         return "reservation";
     }
 
@@ -34,5 +36,11 @@ public class ReservationController {
     public String createReservation(@ModelAttribute ReservationFormDTO dto) {
         reservationService.createReservation(dto);
         return "redirect:/reservation";
+    }
+
+    @GetMapping("/n1")
+    public String n1(Model model) {
+        model.addAttribute("doctorReservations", reservationService.findDoctorReservation(1L));
+        return "n1";
     }
 }
