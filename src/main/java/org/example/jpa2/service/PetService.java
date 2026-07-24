@@ -15,7 +15,9 @@ public class PetService {
 
     // 5개
     public List<Pet> findAll() {
-        return petRepository.findAll();
+//        return petRepository.findAll();
+//        return petRepository.findAllByIsDeletedFalse();
+        return petRepository.findAllDesc();
     }
 
     public Pet findById(Long id) {
