@@ -3,6 +3,8 @@ package org.example.jpa2.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 // 애너테이션 (@)
 // JPA
 @Entity
@@ -39,4 +41,7 @@ public class Pet {
     public void changeAnimal(Animal animal) {
         this.animal = animal;
     }
+
+    @OneToMany(mappedBy = "pet")
+    private List<Reservation> reservations;
 }
