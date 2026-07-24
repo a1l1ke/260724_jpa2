@@ -9,4 +9,12 @@ public record PetFormDTO(String name, int age) {
                 .age(age())
                 .build();
     }
+
+    public Pet toEntity(Long id) {
+        return Pet.builder()
+                .id(id)
+                .name(name())
+                .age(age())
+                .build();
+    }
 }

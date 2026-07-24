@@ -15,7 +15,7 @@
 </section>
 <section>
     <c:forEach items="${pets}" var="pet">
-        <p>${pet}</p>
+        <p>${pet} <a href="/${pet.id}">상세</a></p>
     </c:forEach>
 </section>
 </body>
