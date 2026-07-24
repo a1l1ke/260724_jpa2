@@ -1,7 +1,9 @@
 package org.example.jpa2.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.jpa2.dto.AnimalFormDTO;
 import org.example.jpa2.dto.PetFormDTO;
+import org.example.jpa2.entity.Pet;
 import org.example.jpa2.service.PetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +18,22 @@ public class MainController {
     @GetMapping
     public String index(Model model) {
         model.addAttribute("pets", petService.findAll());
+        model.addAttribute("animals", petService.findAllAnimal());
         return "index";
+    }
+
+    @PostMapping("/animal")
+    public String createAnimal(@ModelAttribute AnimalFormDTO dto) {
+        petService.createAnimal(dto.toEntity());
+        return "redirect:/";
     }
 
     @PostMapping
     public String create(@ModelAttribute PetFormDTO dto) {
-        petService.create(dto.toEntity());
+//        petService.create(dto.toEntity());
+        Pet pet = dto.toEntity();
+        pet.changeAnimal(petService.findAnimalById(dto.animalId()));
+        petService.create(pet);
         return "redirect:/";
     }
 

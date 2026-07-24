@@ -30,4 +30,13 @@ public class Pet {
     public void changeDeleted() {
         isDeleted = true;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "animal_id") // FK - 주인
+    private Animal animal;
+
+    // 더티체킹 시에 작동하는 변경 메서드
+    public void changeAnimal(Animal animal) {
+        this.animal = animal;
+    }
 }
