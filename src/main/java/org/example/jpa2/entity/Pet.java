@@ -24,6 +24,9 @@ public class Pet {
     // SoftDelete
     private boolean isDeleted;
 
+    @OneToOne(mappedBy = "pet")
+    private PetHistory petHistory;
+
     public void changeDeleted() {
         isDeleted = true;
     }
